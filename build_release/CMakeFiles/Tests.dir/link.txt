@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Werror -O3 -O3 CMakeFiles/Tests.dir/test/test.cpp.o -o Tests  _deps/catch2-build/src/libCatch2Main.a _deps/catch2-build/src/libCatch2.a

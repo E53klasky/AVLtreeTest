@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Werror -O3 -O3 CMakeFiles/Main.dir/src/main.cpp.o -o Main
