@@ -4,15 +4,15 @@
 #include <queue>
 #include <regex>
 #include <functional>
-
+//  a student has an id and a name stduent class here
 class Student {
 public:
 	std::string name;
 	int gatorId;
 
-	Student(std::string n , int id) : name(n) , gatorId(id) {}
+	Student(std::string name , int id) : name(name) , gatorId(id) {}
 };
-
+// AVL tree class here with the stdunet hieght and ptrs
 class AVLNode {
 public:
 	Student* student;
@@ -20,7 +20,7 @@ public:
 	AVLNode* right;
 	int height;
 
-	AVLNode(Student* s) : student(s) , left(nullptr) , right(nullptr) , height(1) {}
+	AVLNode(Student* student) : student(student) , left(nullptr) , right(nullptr) , height(1) {}
 };
 
 class AVLTree {
@@ -287,7 +287,7 @@ public:
 	}
 
 
-
+// ------------------------------------------------ or maybe not 
 // bug with this code. FIX
 	bool removeInorder(int n) {
 		std::vector<int> inorderIds;
@@ -304,14 +304,18 @@ public:
 		if (n < 0 || static_cast<size_t>(n) >= inorderIds.size())
 			return false;
 
-		return remove(inorderIds[n]);
+		int gatorIdToRemove = inorderIds[n];
+		root = removeHelper(root , gatorIdToRemove);
+		return true;
 	}
+	// -----------------------------------
 };
+
 int main() {
 	AVLTree tree;
 	int numCommands;
 	std::cin >> numCommands;
-	std::cin.ignore(); // Clear the newline
+	std::cin.ignore();
 
 	for (int i = 0; i < numCommands; i++) {
 		std::string command;
