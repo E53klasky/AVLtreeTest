@@ -24,7 +24,10 @@ include_directories(src)
 
 # Create the main executable
 add_executable(Main
-    src/main.cpp # your main file
+src/main.cpp
+src/Student.cpp
+src/AVLNODE.cpp
+src/AVLTree.cpp
 )
 
 # Create the test executable

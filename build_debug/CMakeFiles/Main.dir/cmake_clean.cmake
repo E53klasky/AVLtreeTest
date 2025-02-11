@@ -1,4 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Main.dir/src/AVLNODE.cpp.o"
+  "CMakeFiles/Main.dir/src/AVLNODE.cpp.o.d"
+  "CMakeFiles/Main.dir/src/AVLTree.cpp.o"
+  "CMakeFiles/Main.dir/src/AVLTree.cpp.o.d"
+  "CMakeFiles/Main.dir/src/Student.cpp.o"
+  "CMakeFiles/Main.dir/src/Student.cpp.o.d"
   "CMakeFiles/Main.dir/src/main.cpp.o"
   "CMakeFiles/Main.dir/src/main.cpp.o.d"
   "Main"

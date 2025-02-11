@@ -201,4 +201,9 @@ CMakeFiles/Tests.dir/test/test.cpp.o: \
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/../catch2/interfaces/catch_interfaces_test_invoker.hpp \
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/../catch2/internal/catch_preprocessor_remove_parens.hpp \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/istream.tcc \
+ /home/adios/COP3530/AVLtreeTest/test/../src/AVLTree.h \
+ /home/adios/COP3530/AVLtreeTest/test/../src/AVLNODE.h \
+ /home/adios/COP3530/AVLtreeTest/test/../src/Student.h \
+ /home/adios/COP3530/AVLtreeTest/test/../src/Student.h \
+ /home/adios/COP3530/AVLtreeTest/test/../src/AVLNODE.h

@@ -542,6 +542,78 @@ Catch2WithMain/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
 .PHONY : Catch2WithMain/fast
 
+src/AVLNODE.o: src/AVLNODE.cpp.o
+.PHONY : src/AVLNODE.o
+
+# target to build an object file
+src/AVLNODE.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLNODE.cpp.o
+.PHONY : src/AVLNODE.cpp.o
+
+src/AVLNODE.i: src/AVLNODE.cpp.i
+.PHONY : src/AVLNODE.i
+
+# target to preprocess a source file
+src/AVLNODE.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLNODE.cpp.i
+.PHONY : src/AVLNODE.cpp.i
+
+src/AVLNODE.s: src/AVLNODE.cpp.s
+.PHONY : src/AVLNODE.s
+
+# target to generate assembly for a file
+src/AVLNODE.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLNODE.cpp.s
+.PHONY : src/AVLNODE.cpp.s
+
+src/AVLTree.o: src/AVLTree.cpp.o
+.PHONY : src/AVLTree.o
+
+# target to build an object file
+src/AVLTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLTree.cpp.o
+.PHONY : src/AVLTree.cpp.o
+
+src/AVLTree.i: src/AVLTree.cpp.i
+.PHONY : src/AVLTree.i
+
+# target to preprocess a source file
+src/AVLTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLTree.cpp.i
+.PHONY : src/AVLTree.cpp.i
+
+src/AVLTree.s: src/AVLTree.cpp.s
+.PHONY : src/AVLTree.s
+
+# target to generate assembly for a file
+src/AVLTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLTree.cpp.s
+.PHONY : src/AVLTree.cpp.s
+
+src/Student.o: src/Student.cpp.o
+.PHONY : src/Student.o
+
+# target to build an object file
+src/Student.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/Student.cpp.o
+.PHONY : src/Student.cpp.o
+
+src/Student.i: src/Student.cpp.i
+.PHONY : src/Student.i
+
+# target to preprocess a source file
+src/Student.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/Student.cpp.i
+.PHONY : src/Student.cpp.i
+
+src/Student.s: src/Student.cpp.s
+.PHONY : src/Student.s
+
+# target to generate assembly for a file
+src/Student.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/Student.cpp.s
+.PHONY : src/Student.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -631,6 +703,15 @@ help:
 	@echo "... Catch2WithMain"
 	@echo "... Main"
 	@echo "... Tests"
+	@echo "... src/AVLNODE.o"
+	@echo "... src/AVLNODE.i"
+	@echo "... src/AVLNODE.s"
+	@echo "... src/AVLTree.o"
+	@echo "... src/AVLTree.i"
+	@echo "... src/AVLTree.s"
+	@echo "... src/Student.o"
+	@echo "... src/Student.i"
+	@echo "... src/Student.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

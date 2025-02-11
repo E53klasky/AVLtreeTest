@@ -44,6 +44,9 @@ CMakeFiles/Tests.dir/test/test.cpp.o
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/internal/catch_unique_name.hpp
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/internal/catch_unique_ptr.hpp
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/internal/catch_void_type.hpp
+ /home/adios/COP3530/AVLtreeTest/src/AVLNODE.h
+ /home/adios/COP3530/AVLtreeTest/src/AVLTree.h
+ /home/adios/COP3530/AVLtreeTest/src/Student.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h

@@ -83,17 +83,65 @@ CMakeFiles/Main.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Main.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/COP3530/AVLtreeTest/src/main.cpp -o CMakeFiles/Main.dir/src/main.cpp.s
 
+CMakeFiles/Main.dir/src/Student.cpp.o: CMakeFiles/Main.dir/flags.make
+CMakeFiles/Main.dir/src/Student.cpp.o: /home/adios/COP3530/AVLtreeTest/src/Student.cpp
+CMakeFiles/Main.dir/src/Student.cpp.o: CMakeFiles/Main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/COP3530/AVLtreeTest/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Main.dir/src/Student.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Main.dir/src/Student.cpp.o -MF CMakeFiles/Main.dir/src/Student.cpp.o.d -o CMakeFiles/Main.dir/src/Student.cpp.o -c /home/adios/COP3530/AVLtreeTest/src/Student.cpp
+
+CMakeFiles/Main.dir/src/Student.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Main.dir/src/Student.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/COP3530/AVLtreeTest/src/Student.cpp > CMakeFiles/Main.dir/src/Student.cpp.i
+
+CMakeFiles/Main.dir/src/Student.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Main.dir/src/Student.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/COP3530/AVLtreeTest/src/Student.cpp -o CMakeFiles/Main.dir/src/Student.cpp.s
+
+CMakeFiles/Main.dir/src/AVLNODE.cpp.o: CMakeFiles/Main.dir/flags.make
+CMakeFiles/Main.dir/src/AVLNODE.cpp.o: /home/adios/COP3530/AVLtreeTest/src/AVLNODE.cpp
+CMakeFiles/Main.dir/src/AVLNODE.cpp.o: CMakeFiles/Main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/COP3530/AVLtreeTest/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Main.dir/src/AVLNODE.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Main.dir/src/AVLNODE.cpp.o -MF CMakeFiles/Main.dir/src/AVLNODE.cpp.o.d -o CMakeFiles/Main.dir/src/AVLNODE.cpp.o -c /home/adios/COP3530/AVLtreeTest/src/AVLNODE.cpp
+
+CMakeFiles/Main.dir/src/AVLNODE.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Main.dir/src/AVLNODE.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/COP3530/AVLtreeTest/src/AVLNODE.cpp > CMakeFiles/Main.dir/src/AVLNODE.cpp.i
+
+CMakeFiles/Main.dir/src/AVLNODE.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Main.dir/src/AVLNODE.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/COP3530/AVLtreeTest/src/AVLNODE.cpp -o CMakeFiles/Main.dir/src/AVLNODE.cpp.s
+
+CMakeFiles/Main.dir/src/AVLTree.cpp.o: CMakeFiles/Main.dir/flags.make
+CMakeFiles/Main.dir/src/AVLTree.cpp.o: /home/adios/COP3530/AVLtreeTest/src/AVLTree.cpp
+CMakeFiles/Main.dir/src/AVLTree.cpp.o: CMakeFiles/Main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/adios/COP3530/AVLtreeTest/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Main.dir/src/AVLTree.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Main.dir/src/AVLTree.cpp.o -MF CMakeFiles/Main.dir/src/AVLTree.cpp.o.d -o CMakeFiles/Main.dir/src/AVLTree.cpp.o -c /home/adios/COP3530/AVLtreeTest/src/AVLTree.cpp
+
+CMakeFiles/Main.dir/src/AVLTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Main.dir/src/AVLTree.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adios/COP3530/AVLtreeTest/src/AVLTree.cpp > CMakeFiles/Main.dir/src/AVLTree.cpp.i
+
+CMakeFiles/Main.dir/src/AVLTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Main.dir/src/AVLTree.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adios/COP3530/AVLtreeTest/src/AVLTree.cpp -o CMakeFiles/Main.dir/src/AVLTree.cpp.s
+
 # Object files for target Main
 Main_OBJECTS = \
-"CMakeFiles/Main.dir/src/main.cpp.o"
+"CMakeFiles/Main.dir/src/main.cpp.o" \
+"CMakeFiles/Main.dir/src/Student.cpp.o" \
+"CMakeFiles/Main.dir/src/AVLNODE.cpp.o" \
+"CMakeFiles/Main.dir/src/AVLTree.cpp.o"
 
 # External object files for target Main
 Main_EXTERNAL_OBJECTS =
 
 Main: CMakeFiles/Main.dir/src/main.cpp.o
+Main: CMakeFiles/Main.dir/src/Student.cpp.o
+Main: CMakeFiles/Main.dir/src/AVLNODE.cpp.o
+Main: CMakeFiles/Main.dir/src/AVLTree.cpp.o
 Main: CMakeFiles/Main.dir/build.make
 Main: CMakeFiles/Main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/adios/COP3530/AVLtreeTest/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/adios/COP3530/AVLtreeTest/build_debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

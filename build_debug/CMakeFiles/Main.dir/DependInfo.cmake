@@ -8,6 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/adios/COP3530/AVLtreeTest/src/AVLNODE.cpp" "CMakeFiles/Main.dir/src/AVLNODE.cpp.o" "gcc" "CMakeFiles/Main.dir/src/AVLNODE.cpp.o.d"
+  "/home/adios/COP3530/AVLtreeTest/src/AVLTree.cpp" "CMakeFiles/Main.dir/src/AVLTree.cpp.o" "gcc" "CMakeFiles/Main.dir/src/AVLTree.cpp.o.d"
+  "/home/adios/COP3530/AVLtreeTest/src/Student.cpp" "CMakeFiles/Main.dir/src/Student.cpp.o" "gcc" "CMakeFiles/Main.dir/src/Student.cpp.o.d"
   "/home/adios/COP3530/AVLtreeTest/src/main.cpp" "CMakeFiles/Main.dir/src/main.cpp.o" "gcc" "CMakeFiles/Main.dir/src/main.cpp.o.d"
   )
 

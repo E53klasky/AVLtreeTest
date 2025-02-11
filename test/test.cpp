@@ -3,11 +3,15 @@
 
 // uncomment and replace the following with your own headers
 // #include "AVL.h"
+#include <catch2/catch_test_macros.hpp>
+#include "../src/AVLTree.h"
+#include "../src/Student.h"
+#include "../src/AVLNODE.h"
 
 using namespace std;
 
 // the syntax for defining a test is below. It is important for the name to be unique, but you can group multiple tests with [tags]. A test can have [multiple][tags] using that syntax.
-TEST_CASE("Example Test Name - Change me!", "[flag]"){
+TEST_CASE("Example Test Name - Change me!" , "[flag]") {
 	// instantiate any class members that you need to test here
 	int one = 1;
 
@@ -18,7 +22,7 @@ TEST_CASE("Example Test Name - Change me!", "[flag]"){
 	REQUIRE(false); // also fix me!
 }
 
-TEST_CASE("Test 2", "[flag]"){
+TEST_CASE("Test 2" , "[flag]") {
 	// you can also use "sections" to share setup code between tests, for example:
 	int one = 1;
 
@@ -39,7 +43,9 @@ TEST_CASE("Test 2", "[flag]"){
 
 // the provided test from the template is below.
 
-TEST_CASE("Example BST Insert", "[flag]"){
+
+// test do not
+TEST_CASE("Example BST Insert" , "[flag]") {
 	/*
 		MyAVLTree tree;   // Create a Tree object
 		tree.insert(3);
@@ -51,3 +57,16 @@ TEST_CASE("Example BST Insert", "[flag]"){
 		REQUIRE(actualOutput == expectedOutput);
 	*/
 }
+
+
+// from gdb thing on cavas
+// TEST_CASE("BST Insert", "[flag]"){
+//     BST inputTree;
+//     inputTree.insert(3);
+//     inputTree.insert(2);
+//     inputTree.insert(1);
+//     std::vector<int> actualOutput = inputTree.inorder();
+//     std::vector<int> expectedOutput = {1, 2, 3};
+//     REQUIRE(expectedOutput.size() == actualOutput.size());
+//     REQUIRE(actualOutput == expectedOutput);
+// }

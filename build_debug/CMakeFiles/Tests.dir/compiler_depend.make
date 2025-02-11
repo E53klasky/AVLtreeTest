@@ -43,6 +43,9 @@ CMakeFiles/Tests.dir/test/test.cpp.o: /home/adios/COP3530/AVLtreeTest/test/test.
   _deps/catch2-src/src/catch2/internal/catch_unique_name.hpp \
   _deps/catch2-src/src/catch2/internal/catch_unique_ptr.hpp \
   _deps/catch2-src/src/catch2/internal/catch_void_type.hpp \
+  /home/adios/COP3530/AVLtreeTest/src/AVLNODE.h \
+  /home/adios/COP3530/AVLtreeTest/src/AVLTree.h \
+  /home/adios/COP3530/AVLtreeTest/src/Student.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -337,7 +340,11 @@ CMakeFiles/Tests.dir/test/test.cpp.o: /home/adios/COP3530/AVLtreeTest/test/test.
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
-/usr/include/c++/11/bits/parse_numbers.h:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/c++/11/bits/memoryfwd.h:
 
@@ -381,15 +388,15 @@ _deps/catch2-src/src/catch2/internal/catch_noncopyable.hpp:
 
 _deps/catch2-src/src/catch2/internal/catch_move_and_forward.hpp:
 
-/usr/include/c++/11/bits/ostream.tcc:
-
-/usr/include/c++/11/bits/ostream_insert.h:
-
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/c++/11/backward/binders.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/home/adios/COP3530/AVLtreeTest/src/Student.h:
+
+_deps/catch2-src/src/catch2/interfaces/catch_interfaces_enum_values_registry.hpp:
 
 _deps/catch2-src/src/catch2/internal/catch_void_type.hpp:
 
@@ -417,6 +424,8 @@ _deps/catch2-src/src/catch2/internal/catch_preprocessor_remove_parens.hpp:
 
 /usr/include/c++/11/bits/vector.tcc:
 
+/home/adios/COP3530/AVLtreeTest/src/AVLTree.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 _deps/catch2-src/src/catch2/interfaces/catch_interfaces_capture.hpp:
@@ -438,10 +447,6 @@ _deps/catch2-src/src/catch2/catch_tostring.hpp:
 /usr/include/c++/11/bits/locale_classes.tcc:
 
 _deps/catch2-src/src/catch2/catch_timer.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/include/c++/11/bits/basic_string.h:
 
@@ -505,9 +510,9 @@ _deps/catch2-src/src/catch2/catch_section_info.hpp:
 
 _deps/catch2-src/src/catch2/internal/catch_compare_traits.hpp:
 
-_deps/catch2-src/src/catch2/interfaces/catch_interfaces_enum_values_registry.hpp:
-
 _deps/catch2-src/src/catch2/internal/catch_config_static_analysis_support.hpp:
+
+/home/adios/COP3530/AVLtreeTest/src/AVLNODE.h:
 
 /usr/include/c++/11/bits/ios_base.h:
 
@@ -577,13 +582,19 @@ _deps/catch2-src/src/catch2/internal/catch_reusable_string_stream.hpp:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
-/usr/include/c++/11/bits/stl_function.h:
-
 /usr/include/stdint.h:
+
+/usr/include/c++/11/bits/stl_function.h:
 
 _deps/catch2-src/src/catch2/internal/catch_stringref.hpp:
 
 _deps/catch2-src/src/catch2/internal/catch_stream_end_stop.hpp:
+
+/usr/include/c++/11/bits/ostream_insert.h:
+
+/usr/include/c++/11/bits/ostream.tcc:
+
+/usr/include/c++/11/bits/parse_numbers.h:
 
 _deps/catch2-src/src/catch2/internal/catch_section.hpp:
 
@@ -719,12 +730,10 @@ _deps/catch2-src/src/catch2/internal/catch_assertion_handler.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
-/usr/include/c++/11/bits/cxxabi_forced.h:
-
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/c++/11/bits/cxxabi_forced.h:
 
 _deps/catch2-src/src/catch2/internal/catch_source_line_info.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
