@@ -548,6 +548,7 @@ src/AVLNODE.o: src/AVLNODE.cpp.o
 # target to build an object file
 src/AVLNODE.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLNODE.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/AVLNODE.cpp.o
 .PHONY : src/AVLNODE.cpp.o
 
 src/AVLNODE.i: src/AVLNODE.cpp.i
@@ -556,6 +557,7 @@ src/AVLNODE.i: src/AVLNODE.cpp.i
 # target to preprocess a source file
 src/AVLNODE.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLNODE.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/AVLNODE.cpp.i
 .PHONY : src/AVLNODE.cpp.i
 
 src/AVLNODE.s: src/AVLNODE.cpp.s
@@ -564,6 +566,7 @@ src/AVLNODE.s: src/AVLNODE.cpp.s
 # target to generate assembly for a file
 src/AVLNODE.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLNODE.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/AVLNODE.cpp.s
 .PHONY : src/AVLNODE.cpp.s
 
 src/AVLTree.o: src/AVLTree.cpp.o
@@ -572,6 +575,7 @@ src/AVLTree.o: src/AVLTree.cpp.o
 # target to build an object file
 src/AVLTree.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLTree.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/AVLTree.cpp.o
 .PHONY : src/AVLTree.cpp.o
 
 src/AVLTree.i: src/AVLTree.cpp.i
@@ -580,6 +584,7 @@ src/AVLTree.i: src/AVLTree.cpp.i
 # target to preprocess a source file
 src/AVLTree.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLTree.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/AVLTree.cpp.i
 .PHONY : src/AVLTree.cpp.i
 
 src/AVLTree.s: src/AVLTree.cpp.s
@@ -588,6 +593,7 @@ src/AVLTree.s: src/AVLTree.cpp.s
 # target to generate assembly for a file
 src/AVLTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/AVLTree.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/AVLTree.cpp.s
 .PHONY : src/AVLTree.cpp.s
 
 src/Student.o: src/Student.cpp.o
@@ -596,6 +602,7 @@ src/Student.o: src/Student.cpp.o
 # target to build an object file
 src/Student.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/Student.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/Student.cpp.o
 .PHONY : src/Student.cpp.o
 
 src/Student.i: src/Student.cpp.i
@@ -604,6 +611,7 @@ src/Student.i: src/Student.cpp.i
 # target to preprocess a source file
 src/Student.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/Student.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/Student.cpp.i
 .PHONY : src/Student.cpp.i
 
 src/Student.s: src/Student.cpp.s
@@ -612,6 +620,7 @@ src/Student.s: src/Student.cpp.s
 # target to generate assembly for a file
 src/Student.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/src/Student.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tests.dir/build.make CMakeFiles/Tests.dir/src/Student.cpp.s
 .PHONY : src/Student.cpp.s
 
 src/main.o: src/main.cpp.o

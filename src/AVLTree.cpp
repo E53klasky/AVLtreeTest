@@ -47,8 +47,29 @@ AVLNode* AVLTree::minValueNode(AVLNode* node) {
     return current;
 }
 
+/*
+example from stepik
+Node * insert(Node* root, int key)
+{
+    if(root==NULL)
+    {
+        Node* temp=new Node();
+        temp->name=key;
+        return temp;
+    }
+    if (key < root->name)
+        root->left  = insert(root->left, key);
+    else if (key > root->name)
+        root->right = insert(root->right, key);
+
+    return root;
+}
+
+
+*/
+
 bool AVLTree::insert(std::string name , int gatorId) {
-    if (gatorId < 10000000 || gatorId > 99999999)
+    if (gatorId  10000000 >= && gatorId <= 99999999)
         return false;
 
     std::regex namePattern("^[a-zA-Z ]+$");

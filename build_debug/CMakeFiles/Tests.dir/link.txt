@@ -1,1 +1,1 @@
-/usr/bin/c++  -Wall -Werror -g -Og CMakeFiles/Tests.dir/test/test.cpp.o -o Tests  _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a
+/usr/bin/c++  -Wall -Werror -g -Og CMakeFiles/Tests.dir/test/test.cpp.o CMakeFiles/Tests.dir/src/AVLTree.cpp.o CMakeFiles/Tests.dir/src/AVLNODE.cpp.o CMakeFiles/Tests.dir/src/Student.cpp.o -o Tests  _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a

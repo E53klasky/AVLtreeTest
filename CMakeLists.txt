@@ -32,7 +32,11 @@ src/AVLTree.cpp
 
 # Create the test executable
 add_executable(Tests
-    test/test.cpp # your test file
+    test/test.cpp 
+    test/test.cpp
+    src/AVLTree.cpp
+    src/AVLNODE.cpp
+    src/Student.cpp
 )
 
 # Link Catch2 to the test executable

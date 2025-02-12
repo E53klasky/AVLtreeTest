@@ -1,4 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Tests.dir/src/AVLNODE.cpp.o"
+  "CMakeFiles/Tests.dir/src/AVLNODE.cpp.o.d"
+  "CMakeFiles/Tests.dir/src/AVLTree.cpp.o"
+  "CMakeFiles/Tests.dir/src/AVLTree.cpp.o.d"
+  "CMakeFiles/Tests.dir/src/Student.cpp.o"
+  "CMakeFiles/Tests.dir/src/Student.cpp.o.d"
   "CMakeFiles/Tests.dir/test/test.cpp.o"
   "CMakeFiles/Tests.dir/test/test.cpp.o.d"
   "Tests"

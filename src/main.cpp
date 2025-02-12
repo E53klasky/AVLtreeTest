@@ -8,7 +8,7 @@ int main() {
 	std::cin.ignore();
 
 	for (int i = 0; i < numCommands; i++) {
-		std::string command;
+		std::string command = "";
 		std::getline(std::cin , command);
 
 		try {
@@ -103,7 +103,7 @@ int main() {
 			}
 		}
 		catch (const std::exception& e) {
-		 // Handle any parsing errors
+
 			std::cout << "unsuccessful" << std::endl;
 		}
 	}
