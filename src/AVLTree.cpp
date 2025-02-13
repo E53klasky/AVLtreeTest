@@ -1,6 +1,7 @@
 #include "AVLTree.h"
 #include <regex>
 #include <queue>
+#include <iostream>
 
 AVLTree::AVLTree() : root(nullptr) {}
 
@@ -69,7 +70,7 @@ Node * insert(Node* root, int key)
 */
 
 bool AVLTree::insert(std::string name , int gatorId) {
-    if (gatorId  10000000 >= && gatorId <= 99999999)
+    if (gatorId < 10000000 || gatorId > 99999999)
         return false;
 
     std::regex namePattern("^[a-zA-Z ]+$");
@@ -285,43 +286,39 @@ int AVLTree::printLevelCount() {
     return levels;
 }
 
-void AVLTree::getInorderIds(AVLNode* node , std::vector<int>& inorderIds) {
-    if (node != nullptr) {
-        getInorderIds(node->left , inorderIds);
-        inorderIds.push_back(node->student->gatorId);
-        getInorderIds(node->right , inorderIds);
-    }
-}
-
 bool AVLTree::removeInorder(int n) {
     if (root == nullptr || n < 0)
         return false;
 
-    // Use a reference to count nodes during traversal
+    std::cout << "Debug: Attempting to remove index " << n << std::endl;
+
     int currentIndex = 0;
     AVLNode* nodeToRemove = nullptr;
 
-    // Helper function to find the nth node
     std::function<void(AVLNode*)> findNthNode = [&](AVLNode* node) {
         if (node == nullptr || nodeToRemove != nullptr)
             return;
 
         findNthNode(node->left);
 
-        if (currentIndex == n) {
+        std::cout << "Debug: Visiting node " << node->student->name
+            << " at index " << currentIndex << std::endl;
+
+        if (currentIndex++ == n) {
             nodeToRemove = node;
+            std::cout << "Debug: Found node to remove: " << node->student->name << std::endl;
             return;
         }
-        currentIndex++;
 
         findNthNode(node->right);
         };
 
     findNthNode(root);
 
-    if (nodeToRemove == nullptr)
+    if (nodeToRemove == nullptr) {
+        std::cout << "Debug: No node found to remove" << std::endl;
         return false;
+    }
 
-    bool result = remove(nodeToRemove->student->gatorId);
-    return result;
+    return remove(nodeToRemove->student->gatorId);
 }
