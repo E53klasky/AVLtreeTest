@@ -190,10 +190,10 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int gatorId) {
 
     return root;
 }
-
+// here put it here ------------------------------------------
 std::string AVLTree::searchId(int gatorId) {
     Student* student = searchIdHelper(root , gatorId);
-    return student ? student->name : "";
+    return student ? student->name : "unsuccessful";
 }
 
 Student* AVLTree::searchIdHelper(AVLNode* root , int gatorId) {
@@ -290,7 +290,7 @@ bool AVLTree::removeInorder(int n) {
     if (root == nullptr || n < 0)
         return false;
 
-    std::cout << "Debug: Attempting to remove index " << n << std::endl;
+  //  std::cout << "Debug: Attempting to remove index " << n << std::endl;
 
     int currentIndex = 0;
     AVLNode* nodeToRemove = nullptr;
@@ -301,12 +301,12 @@ bool AVLTree::removeInorder(int n) {
 
         findNthNode(node->left);
 
-        std::cout << "Debug: Visiting node " << node->student->name
-            << " at index " << currentIndex << std::endl;
+    //    std::cout << "Debug: Visiting node " << node->student->name
+    //        << " at index " << currentIndex << std::endl;
 
         if (currentIndex++ == n) {
             nodeToRemove = node;
-            std::cout << "Debug: Found node to remove: " << node->student->name << std::endl;
+    //        std::cout << "Debug: Found node to remove: " << node->student->name << std::endl;
             return;
         }
 
@@ -316,7 +316,7 @@ bool AVLTree::removeInorder(int n) {
     findNthNode(root);
 
     if (nodeToRemove == nullptr) {
-        std::cout << "Debug: No node found to remove" << std::endl;
+  //      std::cout << "Debug: No node found to remove" << std::endl;
         return false;
     }
 
