@@ -73,9 +73,11 @@ bool AVLTree::insert(std::string name , int gatorId) {
     if (gatorId < 10000000 || gatorId > 99999999)
         return false;
 
-    std::regex namePattern("^[a-zA-Z ]+$");
-    if (!std::regex_match(name , namePattern))
+    // Only allow alphabetical characters and spaces.  (No digits allowed.)
+    std::regex validName("^[A-Za-z ]+$");
+    if (!std::regex_match(name , validName)) {
         return false;
+    }
 
     if (searchIdHelper(root , gatorId) != nullptr)
         return false;
@@ -84,7 +86,6 @@ bool AVLTree::insert(std::string name , int gatorId) {
     root = insertHelper(root , student);
     return true;
 }
-
 AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
     if (node == nullptr)
         return new AVLNode(student);
