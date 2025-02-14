@@ -59,13 +59,19 @@ int main() {
 					std::cout << "unsuccessful" << std::endl;
 				}
 			}
-			else if (command.substr(0 , 6) == "insert") {
-				// std::cout << "Debug: Detected insert command" << std::endl;
+			// bug fix: added space after "insert" to avoid matching "insertInorder " 00000010
+			if (command.substr(0 , 6) == "insert") {
+				// Optionally, insert "Alice" for debug:
+
 				size_t nameStart = command.find('"');
 				size_t nameEnd = command.find('"' , nameStart + 1);
 				std::string name = command.substr(nameStart + 1 , nameEnd - nameStart - 1);
-				int id = std::stoi(command.substr(nameEnd + 2));
-				std::cout << (tree.insert(name , id) ? "successful" : "unsuccessful") << std::endl;
+				// Extract UF ID from the command after the name.
+				std::string idStr = command.substr(nameEnd + 2);
+				//std::cout << "Debug: Inserting name '" << name << "' with ID '" << idStr << "'" << std::endl;
+				std::cout << (tree.insert(name , idStr) ? "successful" : "unsuccessful") << std::endl;
+				//std::cout << "Debug: Insertion complete." << std::endl;
+
 			}
 			else if (command.substr(0 , 6) == "search") {
 				// std::cout << "Debug: Detected search command" << std::endl;
@@ -131,12 +137,12 @@ int main() {
 				std::cout << tree.printLevelCount() << std::endl;
 			}
 			else {
-				// std::cout << "Debug: Unknown command" << std::endl;
+				std::cout << "Debug: Unknown command" << std::endl;
 				std::cout << "unsuccessful" << std::endl;
 			}
 		}
 		catch (const std::exception& e) {
-			// std::cout << "Debug: Exception caught in main: " << e.what() << std::endl;
+			std::cout << "Debug: Exception caught in main: " << e.what() << std::endl;
 			std::cout << "unsuccessful" << std::endl;
 		}
 	}

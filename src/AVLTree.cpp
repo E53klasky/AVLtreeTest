@@ -47,42 +47,32 @@ AVLNode* AVLTree::minValueNode(AVLNode* node) {
         current = current->left;
     return current;
 }
-
-/*
-example from stepik
-Node * insert(Node* root, int key)
-{
-    if(root==NULL)
-    {
-        Node* temp=new Node();
-        temp->name=key;
-        return temp;
-    }
-    if (key < root->name)
-        root->left  = insert(root->left, key);
-    else if (key > root->name)
-        root->right = insert(root->right, key);
-
-    return root;
-}
-
-
-*/
-
-bool AVLTree::insert(std::string name , int gatorId) {
-    if (gatorId < 10000000 || gatorId > 99999999)
+// funcion not called 
+bool AVLTree::insert(const std::string& name , const std::string& ufid) {
+    // Validate name: must not be empty and must contain only alphabetic characters and spaces.
+    if (name.empty())
         return false;
-
-    // Only allow alphabetical characters and spaces.  (No digits allowed.)
-    std::regex validName("^[A-Za-z ]+$");
-    if (!std::regex_match(name , validName)) {
-        return false;
+    for (char c : name) {
+        if (!std::isalpha(c) && c != ' ')
+            return false;  // Reject names with digits or special characters.
     }
 
-    if (searchIdHelper(root , gatorId) != nullptr)
+    // Validate UFID: must be exactly 8 characters long and consist only of digits.
+    if (ufid.size() != 8)
+        return false;
+    for (char c : ufid) {
+        if (!std::isdigit(c))
+            return false;
+    }
+
+    // Optional: Check for duplicate UFIDs.
+    // Since searchId takes an int, convert ufid to int.
+    if (searchId(std::stoi(ufid)) != "unsuccessful")
         return false;
 
-    Student* student = new Student(name , gatorId);
+    // Proceed with creating and inserting the new node.
+    // (Assuming you have a Student class and an insertHelper function for AVL tree insertion.)
+    Student* student = new Student(name , std::stoi(ufid));
     root = insertHelper(root , student);
     return true;
 }

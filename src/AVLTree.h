@@ -30,9 +30,9 @@ private:
 public:
     AVLTree();
 
-    bool insert(std::string name , int gatorId);
+    bool insert(const std::string& name , const std::string& gatorId);
     bool remove(int gatorId);
-    bool removeInorder(int n);
+    bool removeInorder(int num);
 
     std::string searchId(int gatorId);
 

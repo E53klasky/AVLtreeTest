@@ -201,30 +201,15 @@ CMakeFiles/Tests.dir/test/test.cpp.o: \
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/../catch2/interfaces/catch_interfaces_test_invoker.hpp \
  /home/adios/COP3530/AVLtreeTest/build_debug/_deps/catch2-src/src/catch2/../catch2/internal/catch_preprocessor_remove_parens.hpp \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/random \
- /usr/include/c++/11/cmath /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
- /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
- /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
- /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
- /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
- /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/11/bits/random.h \
- /usr/include/c++/11/bits/uniform_int_dist.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
- /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
- /usr/include/c++/11/bits/stl_numeric.h /usr/include/c++/11/bit \
- /usr/include/c++/11/algorithm /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h \
+ /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/algorithm \
+ /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
- /usr/include/c++/11/bits/stl_tempbuf.h /usr/include/c++/11/functional \
- /usr/include/c++/11/tuple /usr/include/c++/11/array \
- /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/stl_tempbuf.h \
+ /usr/include/c++/11/bits/uniform_int_dist.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/tuple \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/refwrap.h \
  /usr/include/c++/11/bits/std_function.h /usr/include/c++/11/map \
  /usr/include/c++/11/bits/stl_tree.h \
@@ -242,7 +227,8 @@ CMakeFiles/Tests.dir/test/test.cpp.o: \
  /usr/include/c++/11/bits/locale_conv.h \
  /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
- /usr/include/c++/11/bits/align.h /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
+ /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
  /usr/include/c++/11/bits/allocated_ptr.h \
  /usr/include/c++/11/ext/concurrence.h \
@@ -263,7 +249,21 @@ CMakeFiles/Tests.dir/test/test.cpp.o: \
  /usr/include/c++/11/bits/regex_compiler.tcc \
  /usr/include/c++/11/bits/regex.h /usr/include/c++/11/bits/regex.tcc \
  /usr/include/c++/11/bits/regex_executor.h \
- /usr/include/c++/11/bits/regex_executor.tcc /usr/include/c++/11/set \
+ /usr/include/c++/11/bits/regex_executor.tcc /usr/include/c++/11/random \
+ /usr/include/c++/11/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/11/bits/random.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+ /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
+ /usr/include/c++/11/bits/stl_numeric.h /usr/include/c++/11/set \
  /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h \
  /home/adios/COP3530/AVLtreeTest/test/../src/AVLTree.h \
