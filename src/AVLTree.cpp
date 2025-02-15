@@ -7,6 +7,9 @@
 // I may keep it as a string and a int
 // when searching I will look for the string (for display and stops the 00000001 from being converted to 1)
 // when inserting I will convert the string to an int
+
+// I have added the extra string now I will send a string to searchID 
+// this will stop looking for 00000001 as 1
 AVLTree::AVLTree() : root(nullptr) {}
 
 int AVLTree::getHeight(AVLNode* node) {
@@ -78,7 +81,7 @@ bool AVLTree::insert(const std::string& name , const std::string& ufid) {
     if (searchId(numericUfid) != "unsuccessful")
         return false;
 
-    Student* student = new Student(name , numericUfid);
+    Student* student = new Student(name , numericUfid , ufid);
     root = insertHelper(root , student);
 
 
@@ -157,7 +160,7 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int gatorId) {
         else {
             AVLNode* temp = minValueNode(root->right);
             Student* oldStudent = root->student;
-            root->student = new Student(temp->student->name , temp->student->gatorId);
+            root->student = new Student(temp->student->name , temp->student->gatorId , temp->student->gatorIdStr);
             delete oldStudent;
             root->right = removeHelper(root->right , temp->student->gatorId);
         }
