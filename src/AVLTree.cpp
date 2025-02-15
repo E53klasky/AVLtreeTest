@@ -2,7 +2,11 @@
 #include <regex>
 #include <queue>
 #include <iostream>
-
+#include <iomanip>
+// TODO how will I deal with 00000001 
+// I may keep it as a string and a int
+// when searching I will look for the string (for display and stops the 00000001 from being converted to 1)
+// when inserting I will convert the string to an int
 AVLTree::AVLTree() : root(nullptr) {}
 
 int AVLTree::getHeight(AVLNode* node) {
@@ -47,17 +51,17 @@ AVLNode* AVLTree::minValueNode(AVLNode* node) {
         current = current->left;
     return current;
 }
-// funcion not called 
+// funcion bug with 00000001 strores it as 1 first it is stored correctly but then it does not stay correct 
 bool AVLTree::insert(const std::string& name , const std::string& ufid) {
     // Validate name: must not be empty and must contain only alphabetic characters and spaces.
     if (name.empty())
         return false;
     for (char c : name) {
         if (!std::isalpha(c) && c != ' ')
-            return false;  // Reject names with digits or special characters.
+            return false;
     }
 
-    // Validate UFID: must be exactly 8 characters long and consist only of digits.
+    // Validate UFID: must be exactly 8 digits.
     if (ufid.size() != 8)
         return false;
     for (char c : ufid) {
@@ -65,18 +69,24 @@ bool AVLTree::insert(const std::string& name , const std::string& ufid) {
             return false;
     }
 
-    // Optional: Check for duplicate UFIDs.
-    // Since searchId takes an int, convert ufid to int.
-    if (searchId(std::stoi(ufid)) != "unsuccessful")
+    int numericUfid = 0;
+    for (char c : ufid) {
+        numericUfid = numericUfid * 10 + (c - '0');
+    }
+ //   std::cout << "Debug: Inserting student " << name << " with ID " << numericUfid << std::endl;
+
+    if (searchId(numericUfid) != "unsuccessful")
         return false;
 
-    // Proceed with creating and inserting the new node.
-    // (Assuming you have a Student class and an insertHelper function for AVL tree insertion.)
-    Student* student = new Student(name , std::stoi(ufid));
+    Student* student = new Student(name , numericUfid);
     root = insertHelper(root , student);
+
+
     return true;
 }
+
 AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
+   // std::cout << "Debug: Inserting student " << student->name << " with ID " << student->gatorId << std::endl;
     if (node == nullptr)
         return new AVLNode(student);
 
@@ -181,7 +191,7 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int gatorId) {
 
     return root;
 }
-// here put it here ------------------------------------------
+
 std::string AVLTree::searchId(int gatorId) {
     Student* student = searchIdHelper(root , gatorId);
     return student ? student->name : "unsuccessful";
@@ -281,35 +291,33 @@ bool AVLTree::removeInorder(int n) {
     if (root == nullptr || n < 0)
         return false;
 
-  //  std::cout << "Debug: Attempting to remove index " << n << std::endl;
+    // Get total number of nodes first
+    std::vector<std::string> inorderList = printInorder();
+    if (static_cast<size_t>(n) >= inorderList.size())
+        return false;
 
     int currentIndex = 0;
-    AVLNode* nodeToRemove = nullptr;
+    int targetId = -1;
 
     std::function<void(AVLNode*)> findNthNode = [&](AVLNode* node) {
-        if (node == nullptr || nodeToRemove != nullptr)
+        if (node == nullptr || targetId != -1)
             return;
 
         findNthNode(node->left);
 
-    //    std::cout << "Debug: Visiting node " << node->student->name
-    //        << " at index " << currentIndex << std::endl;
-
-        if (currentIndex++ == n) {
-            nodeToRemove = node;
-    //        std::cout << "Debug: Found node to remove: " << node->student->name << std::endl;
+        if (currentIndex == n) {
+            targetId = node->student->gatorId;
             return;
         }
+        currentIndex++;
 
         findNthNode(node->right);
         };
 
     findNthNode(root);
 
-    if (nodeToRemove == nullptr) {
-  //      std::cout << "Debug: No node found to remove" << std::endl;
+    if (targetId == -1)
         return false;
-    }
 
-    return remove(nodeToRemove->student->gatorId);
+    return remove(targetId);
 }
