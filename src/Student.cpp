@@ -1,2 +1,2 @@
 #include "Student.h"
-Student::Student(std::string name , int ufid , std::string gatorIdStr) : name(name) , gatorId(ufid) , gatorIdStr(gatorIdStr) {}
+Student::Student(std::string name , int ufId) : name(name) , ufId(ufId) {}

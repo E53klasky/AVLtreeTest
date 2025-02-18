@@ -3,13 +3,12 @@
 #include <queue>
 #include <iostream>
 #include <iomanip>
-// TODO how will I deal with 00000001 
-// I may keep it as a string and a int
-// when searching I will look for the string (for display and stops the 00000001 from being converted to 1)
-// when inserting I will convert the string to an int
+// TODO: 
+// 1. add comments
+// 2. analzes time copmptetites 
+// 3. check if there is a bug with 00000001 bc this goes to 1 can't insert it again
+// check search method for stoi and test it and insertion 
 
-// I have added the extra string now I will send a string to searchID 
-// this will stop looking for 00000001 as 1
 AVLTree::AVLTree() : root(nullptr) {}
 
 int AVLTree::getHeight(AVLNode* node) {
@@ -22,30 +21,30 @@ int AVLTree::getBalance(AVLNode* node) {
     return getHeight(node->left) - getHeight(node->right);
 }
 
-AVLNode* AVLTree::rightRotate(AVLNode* y) {
-    AVLNode* x = y->left;
-    AVLNode* T2 = x->right;
+AVLNode* AVLTree::rightRotate(AVLNode* unbalancedNode) {
+    AVLNode* leftChild = unbalancedNode->left;
+    AVLNode* leftRightSubtree = leftChild->right;
 
-    x->right = y;
-    y->left = T2;
+    leftChild->right = unbalancedNode;
+    unbalancedNode->left = leftRightSubtree;
 
-    y->height = std::max(getHeight(y->left) , getHeight(y->right)) + 1;
-    x->height = std::max(getHeight(x->left) , getHeight(x->right)) + 1;
+    unbalancedNode->height = std::max(getHeight(unbalancedNode->left) , getHeight(unbalancedNode->right)) + 1;
+    leftChild->height = std::max(getHeight(leftChild->left) , getHeight(leftChild->right)) + 1;
 
-    return x;
+    return leftChild;
 }
 
-AVLNode* AVLTree::leftRotate(AVLNode* x) {
-    AVLNode* y = x->right;
-    AVLNode* T2 = y->left;
+AVLNode* AVLTree::leftRotate(AVLNode* unbalancedNode) {
+    AVLNode* rightChild = unbalancedNode->right;
+    AVLNode* rightLeftSubtree = rightChild->left;
 
-    y->left = x;
-    x->right = T2;
+    rightChild->left = unbalancedNode;
+    unbalancedNode->right = rightLeftSubtree;
 
-    x->height = std::max(getHeight(x->left) , getHeight(x->right)) + 1;
-    y->height = std::max(getHeight(y->left) , getHeight(y->right)) + 1;
+    unbalancedNode->height = std::max(getHeight(unbalancedNode->left) , getHeight(unbalancedNode->right)) + 1;
+    rightChild->height = std::max(getHeight(rightChild->left) , getHeight(rightChild->right)) + 1;
 
-    return y;
+    return rightChild;
 }
 
 AVLNode* AVLTree::minValueNode(AVLNode* node) {
@@ -54,8 +53,8 @@ AVLNode* AVLTree::minValueNode(AVLNode* node) {
         current = current->left;
     return current;
 }
-// funcion bug with 00000001 strores it as 1 first it is stored correctly but then it does not stay correct 
-bool AVLTree::insert(const std::string& name , const std::string& ufid) {
+
+bool AVLTree::insert(const std::string& name , const std::string& ufId) {
     // Validate name: must not be empty and must contain only alphabetic characters and spaces.
     if (name.empty())
         return false;
@@ -65,15 +64,15 @@ bool AVLTree::insert(const std::string& name , const std::string& ufid) {
     }
 
     // Validate UFID: must be exactly 8 digits.
-    if (ufid.size() != 8)
+    if (ufId.size() != 8)
         return false;
-    for (char c : ufid) {
+    for (char c : ufId) {
         if (!std::isdigit(c))
             return false;
     }
 
     int numericUfid = 0;
-    for (char c : ufid) {
+    for (char c : ufId) {
         numericUfid = numericUfid * 10 + (c - '0');
     }
  //   std::cout << "Debug: Inserting student " << name << " with ID " << numericUfid << std::endl;
@@ -81,21 +80,20 @@ bool AVLTree::insert(const std::string& name , const std::string& ufid) {
     if (searchId(numericUfid) != "unsuccessful")
         return false;
 
-    Student* student = new Student(name , numericUfid , ufid);
+    Student* student = new Student(name , numericUfid);
     root = insertHelper(root , student);
-
 
     return true;
 }
 
 AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
-   // std::cout << "Debug: Inserting student " << student->name << " with ID " << student->gatorId << std::endl;
+   // std::cout << "Debug: Inserting student " << student->name << " with ID " << student->ufId << std::endl;
     if (node == nullptr)
         return new AVLNode(student);
 
-    if (student->gatorId < node->student->gatorId)
+    if (student->ufId < node->student->ufId)
         node->left = insertHelper(node->left , student);
-    else if (student->gatorId > node->student->gatorId)
+    else if (student->ufId > node->student->ufId)
         node->right = insertHelper(node->right , student);
     else
         return node;
@@ -104,21 +102,21 @@ AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
     int balance = getBalance(node);
 
     // Left Left Case
-    if (balance > 1 && student->gatorId < node->left->student->gatorId)
+    if (balance > 1 && student->ufId < node->left->student->ufId)
         return rightRotate(node);
 
     // Right Right Case
-    if (balance < -1 && student->gatorId > node->right->student->gatorId)
+    if (balance < -1 && student->ufId > node->right->student->ufId)
         return leftRotate(node);
 
     // Left Right Case
-    if (balance > 1 && student->gatorId > node->left->student->gatorId) {
+    if (balance > 1 && student->ufId > node->left->student->ufId) {
         node->left = leftRotate(node->left);
         return rightRotate(node);
     }
 
     // Right Left Case
-    if (balance < -1 && student->gatorId < node->right->student->gatorId) {
+    if (balance < -1 && student->ufId < node->right->student->ufId) {
         node->right = rightRotate(node->right);
         return leftRotate(node);
     }
@@ -126,21 +124,21 @@ AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
     return node;
 }
 
-bool AVLTree::remove(int gatorId) {
-    if (searchIdHelper(root , gatorId) == nullptr)
+bool AVLTree::remove(int ufId) {
+    if (searchIdHelper(root , ufId) == nullptr)
         return false;
-    root = removeHelper(root , gatorId);
+    root = removeHelper(root , ufId);
     return true;
 }
 
-AVLNode* AVLTree::removeHelper(AVLNode* root , int gatorId) {
+AVLNode* AVLTree::removeHelper(AVLNode* root , int ufId) {
     if (root == nullptr)
         return root;
 
-    if (gatorId < root->student->gatorId)
-        root->left = removeHelper(root->left , gatorId);
-    else if (gatorId > root->student->gatorId)
-        root->right = removeHelper(root->right , gatorId);
+    if (ufId < root->student->ufId)
+        root->left = removeHelper(root->left , ufId);
+    else if (ufId > root->student->ufId)
+        root->right = removeHelper(root->right , ufId);
     else {
         if (root->left == nullptr || root->right == nullptr) {
             AVLNode* temp = root->left ? root->left : root->right;
@@ -160,9 +158,9 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int gatorId) {
         else {
             AVLNode* temp = minValueNode(root->right);
             Student* oldStudent = root->student;
-            root->student = new Student(temp->student->name , temp->student->gatorId , temp->student->gatorIdStr);
+            root->student = new Student(temp->student->name , temp->student->ufId);
             delete oldStudent;
-            root->right = removeHelper(root->right , temp->student->gatorId);
+            root->right = removeHelper(root->right , temp->student->ufId);
         }
     }
 
@@ -195,19 +193,19 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int gatorId) {
     return root;
 }
 
-std::string AVLTree::searchId(int gatorId) {
-    Student* student = searchIdHelper(root , gatorId);
+std::string AVLTree::searchId(int ufId) {
+    Student* student = searchIdHelper(root , ufId);
     return student ? student->name : "unsuccessful";
 }
 
-Student* AVLTree::searchIdHelper(AVLNode* root , int gatorId) {
-    if (root == nullptr || root->student->gatorId == gatorId)
+Student* AVLTree::searchIdHelper(AVLNode* root , int ufId) {
+    if (root == nullptr || root->student->ufId == ufId)
         return root ? root->student : nullptr;
 
-    if (gatorId < root->student->gatorId)
-        return searchIdHelper(root->left , gatorId);
+    if (ufId < root->student->ufId)
+        return searchIdHelper(root->left , ufId);
 
-    return searchIdHelper(root->right , gatorId);
+    return searchIdHelper(root->right , ufId);
 }
 
 std::vector<int> AVLTree::searchName(const std::string& name) {
@@ -219,7 +217,7 @@ std::vector<int> AVLTree::searchName(const std::string& name) {
 void AVLTree::searchNameHelper(AVLNode* root , const std::string& name , std::vector<int>& result) {
     if (root != nullptr) {
         if (root->student->name == name)
-            result.push_back(root->student->gatorId);
+            result.push_back(root->student->ufId);
         searchNameHelper(root->left , name , result);
         searchNameHelper(root->right , name , result);
     }
@@ -271,19 +269,19 @@ int AVLTree::printLevelCount() {
     if (root == nullptr) return 0;
 
     int levels = 0;
-    std::queue<AVLNode*> q;
-    q.push(root);
+    std::queue<AVLNode*> queue;
+    queue.push(root);
 
-    while (!q.empty()) {
-        int size = q.size();
+    while (!queue.empty()) {
+        int size = queue.size();
         levels++;
 
         while (size--) {
-            AVLNode* node = q.front();
-            q.pop();
+            AVLNode* node = queue.front();
+            queue.pop();
 
-            if (node->left) q.push(node->left);
-            if (node->right) q.push(node->right);
+            if (node->left) queue.push(node->left);
+            if (node->right) queue.push(node->right);
         }
     }
 
@@ -309,7 +307,7 @@ bool AVLTree::removeInorder(int n) {
         findNthNode(node->left);
 
         if (currentIndex == n) {
-            targetId = node->student->gatorId;
+            targetId = node->student->ufId;
             return;
         }
         currentIndex++;

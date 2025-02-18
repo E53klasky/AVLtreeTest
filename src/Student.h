@@ -1,4 +1,3 @@
-
 #ifndef STUDENT_H
 #define STUDENT_H
 
@@ -6,11 +5,11 @@
 
 class Student {
 public:
+    // student class a student has a name as a string and ufid number as an int 
     std::string name;
-    int gatorId;
-    std::string gatorIdStr;
+    int ufId;
 
-    Student(std::string name , int gatorId , std::string gatorIdStr);
+    Student(std::string name , int ufId);
 };
 
 #endif
