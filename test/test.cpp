@@ -206,7 +206,7 @@ TEST_CASE("Forced Rotations and Balancing" , "[balance][rotations]") {
 
 TEST_CASE("Sequential Removal (Remove Inorder Until Empty)" , "[remove_all]") {
     AVLTree tree;
-    const int totalNodes = 10;
+    const int totalNodes = 1000;
     for (int i = 1; i <= totalNodes; ++i) {
         char ufid[9];
         std::snprintf(ufid , sizeof(ufid) , "%08d" , 10000000 + i);
