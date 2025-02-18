@@ -238,3 +238,46 @@ TEST_CASE("Random Removal Loop Until Empty" , "[random_removal]") {
     }
     REQUIRE(tree.printInorder().empty());
 }
+
+
+TEST_CASE("edge case")
+{
+    AVLTree tree;
+    tree.insert("ben" , "00000001");
+    tree.insert("ben" , "00000002");
+    tree.insert("ben" , "00000003");
+    tree.insert("ben" , "00000004");
+    tree.insert("ben" , "00000005");
+    tree.insert("ben" , "00000006");
+    tree.insert("ben" , "00000007");
+    tree.insert("ben" , "00000008");
+    tree.insert("ben" , "00000009");
+    tree.insert("ben" , "00000010");
+    tree.insert("ben" , "00000011");
+    tree.insert("ben" , "00000012");
+    tree.insert("ben" , "00000013");
+    tree.insert("ben" , "00000014");
+    tree.insert("ben" , "00000015");
+    tree.insert("ben" , "00000016");
+    tree.insert("ben" , "00000001");
+    tree.insert("ben" , "00000001");
+
+    REQUIRE(tree.searchId(1) == "ben");
+    REQUIRE(tree.searchId(2) == "ben");
+    REQUIRE(tree.searchId(3) == "ben");
+    REQUIRE(tree.searchId(4) == "ben");
+    REQUIRE(tree.searchId(5) == "ben");
+    REQUIRE(tree.searchId(6) == "ben");
+    REQUIRE(tree.searchId(7) == "ben");
+    REQUIRE(tree.searchId(8) == "ben");
+    REQUIRE(tree.searchId(9) == "ben");
+    REQUIRE(tree.searchId(10) == "ben");
+    REQUIRE(tree.searchId(11) == "ben");
+    REQUIRE(tree.searchId(12) == "ben");
+    REQUIRE(tree.searchId(13) == "ben");
+    REQUIRE(tree.searchId(14) == "ben");
+    REQUIRE(tree.searchId(15) == "ben");
+    REQUIRE(tree.searchId(16) == "ben");
+
+
+}
