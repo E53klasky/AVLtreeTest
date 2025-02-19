@@ -153,3 +153,85 @@
 //         REQUIRE(tree.searchId(id) == "unsuccessful");
 //     }
 // }
+
+
+
+// TEST_CASE("Test UFIDs with leading zeros" , "[leading_zeros]") {
+//     AVLTree tree;
+
+//     REQUIRE(tree.insert("StudentOne" , "00000001"));
+//     REQUIRE(tree.insert("StudentTwo" , "00000010"));
+//     REQUIRE(tree.insert("StudentThree" , "00000100"));
+
+//     REQUIRE(tree.searchId(1) == "StudentOne");
+//     REQUIRE(tree.searchId(10) == "StudentTwo");
+//     REQUIRE(tree.searchId(100) == "StudentThree");
+
+//     REQUIRE(tree.remove(1));
+//     REQUIRE(tree.searchId(1) == "unsuccessful");
+//     REQUIRE(tree.remove(10));
+//     REQUIRE(tree.searchId(10) == "unsuccessful");
+// }
+
+
+// TEST_CASE("Test edge cases for removeInorder" , "[remove_inorder_edge]") {
+//     AVLTree tree;
+
+//     REQUIRE_FALSE(tree.removeInorder(0));
+
+//     REQUIRE_FALSE(tree.removeInorder(-1));
+
+
+//     REQUIRE(tree.insert("First" , "00000001"));
+//     REQUIRE(tree.insert("Second" , "00000002"));
+//     REQUIRE(tree.insert("Third" , "00000003"));
+
+//     REQUIRE_FALSE(tree.removeInorder(3));
+
+//     REQUIRE(tree.removeInorder(1));
+//     auto inorder = tree.printInorder();
+//     REQUIRE(inorder.size() == 2);
+// }
+
+
+// TEST_CASE("Test all traversal methods consistency" , "[traversal_consistency]") {
+//     AVLTree tree;
+
+//     REQUIRE(tree.insert("A" , "00000001"));
+//     REQUIRE(tree.insert("B" , "00000002"));
+//     REQUIRE(tree.insert("C" , "00000003"));
+//     REQUIRE(tree.insert("D" , "00000004"));
+//     REQUIRE(tree.insert("E" , "00000005"));
+
+//     auto inorder = tree.printInorder();
+//     auto preorder = tree.printPreorder();
+//     auto postorder = tree.printPostorder();
+
+//     REQUIRE(inorder.size() == 5);
+//     REQUIRE(preorder.size() == 5);
+//     REQUIRE(postorder.size() == 5);
+
+//     std::set<std::string> inorder_set(inorder.begin() , inorder.end());
+//     std::set<std::string> preorder_set(preorder.begin() , preorder.end());
+//     std::set<std::string> postorder_set(postorder.begin() , postorder.end());
+
+//     REQUIRE(inorder_set == preorder_set);
+//     REQUIRE(preorder_set == postorder_set);
+// }
+
+// TEST_CASE("Test invalid input handling" , "[invalid_input]") {
+//     AVLTree tree;
+
+//     REQUIRE_FALSE(tree.insert("Test" , "1234567"));
+//     REQUIRE_FALSE(tree.insert("Test" , "123456789"));
+//     REQUIRE_FALSE(tree.insert("Test" , "abcd1234"));
+//     REQUIRE_FALSE(tree.insert("Test" , "0000000a"));
+
+//     REQUIRE_FALSE(tree.insert("Test123" , "12345678"));
+//     REQUIRE_FALSE(tree.insert("Test@Name" , "12345678"));
+//     REQUIRE_FALSE(tree.insert("" , "12345678"));
+
+//     REQUIRE(tree.insert("First" , "12345678"));
+//     REQUIRE_FALSE(tree.insert("Second" , "12345678"));
+// }
+

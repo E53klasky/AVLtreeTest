@@ -3,8 +3,7 @@
 #include <queue>
 #include <iostream>
 #include <iomanip>
-// TODO:
-// 3. check if there is a bug with 00000001 and other for searchID output
+
 AVLTree::AVLTree() : root(nullptr) {}
 
 // get the height by recursively calling the node's height

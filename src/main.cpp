@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <iomanip>
 #include "AVLTree.h"
-
+// checkpre inorder and insert method 
 int main() {
 	// I am making the object and counting the number of commands here
 	// I take the commands in with cin
@@ -76,19 +77,27 @@ int main() {
 					if (ufids.empty())
 						std::cout << "unsuccessful" << std::endl;
 					else {
-						for (int ufid : ufids)
-							std::cout << ufid << std::endl;
+						for (int ufid : ufids) {
+							std::cout << std::setw(8) << std::setfill('0') << ufid << std::endl;
+						}
 					}
 				}
-				else {
-					// Extracts the UFID from the command and searches for the associated name searching by ufid 
+
+				else { 
+					// Extracts the UFID from the command and searches for the associated name by UFID
 					std::string numStr = command.substr(7);
-					numStr.erase(0 , numStr.find_first_not_of(" \t\r\n"));
+					numStr.erase(0, numStr.find_first_not_of(" \t\r\n"));
 					numStr.erase(numStr.find_last_not_of(" \t\r\n") + 1);
-					int ufid = std::stoi(numStr);
-					std::string name = tree.searchId(ufid);
-					std::cout << (name.empty() ? "unsuccessful" : name) << std::endl;
-				}
+				
+					// Check if UFID is exactly 8 digits
+					if (numStr.length() != 8 || !std::all_of(numStr.begin(), numStr.end(), ::isdigit)) {
+						std::cout << "unsuccessful" << std::endl;
+					} else {
+						int ufid = std::stoi(numStr);
+						std::string name = tree.searchId(ufid);
+						std::cout << (name.empty() ? "unsuccessful" : name) << std::endl;
+					}
+				}				
 			}
 			// prints elements in inorder traversal
 			else if (command == "printInorder") {
