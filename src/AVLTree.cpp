@@ -3,47 +3,51 @@
 #include <queue>
 #include <iostream>
 #include <iomanip>
-// TODO: 
-// test that it prints out correctly with mutlie of the same ids 
-// and changing my test to the test on the one thing. 
+// TODO:
+// 3. check if there is a bug with 00000001 and other for searchID output
 AVLTree::AVLTree() : root(nullptr) {}
 
+// get the height by recursively calling the node's height
 int AVLTree::getHeight(AVLNode* node) {
     if (node == nullptr) return 0;
     return node->height;
 }
 
+// claculates the balance factor by subtracting the difference between the hieghts of its left and right subtree
 int AVLTree::getBalance(AVLNode* node) {
     if (node == nullptr) return 0;
     return getHeight(node->left) - getHeight(node->right);
 }
 
+// does a right rotation on the unbalanced node
 AVLNode* AVLTree::rightRotate(AVLNode* unbalancedNode) {
     AVLNode* leftChild = unbalancedNode->left;
     AVLNode* leftRightSubtree = leftChild->right;
 
     leftChild->right = unbalancedNode;
     unbalancedNode->left = leftRightSubtree;
-
+    // updates the heights again
     unbalancedNode->height = std::max(getHeight(unbalancedNode->left) , getHeight(unbalancedNode->right)) + 1;
     leftChild->height = std::max(getHeight(leftChild->left) , getHeight(leftChild->right)) + 1;
 
     return leftChild;
 }
 
+// left roation on unbalacned node
 AVLNode* AVLTree::leftRotate(AVLNode* unbalancedNode) {
     AVLNode* rightChild = unbalancedNode->right;
     AVLNode* rightLeftSubtree = rightChild->left;
 
     rightChild->left = unbalancedNode;
     unbalancedNode->right = rightLeftSubtree;
-
+    // updaing the heights after  rotation
     unbalancedNode->height = std::max(getHeight(unbalancedNode->left) , getHeight(unbalancedNode->right)) + 1;
     rightChild->height = std::max(getHeight(rightChild->left) , getHeight(rightChild->right)) + 1;
 
     return rightChild;
 }
 
+// finds the smallest value in a subtree
 AVLNode* AVLTree::minValueNode(AVLNode* node) {
     AVLNode* current = node;
     while (current->left != nullptr)
@@ -51,6 +55,7 @@ AVLNode* AVLTree::minValueNode(AVLNode* node) {
     return current;
 }
 
+// inserts a node into the tree but befroe that it checks to see if the value is vaild
 bool AVLTree::insert(const std::string& name , const std::string& ufId) {
     // Validate name: must not be empty and must contain only alphabetic characters and spaces.
     if (name.empty())
@@ -83,6 +88,7 @@ bool AVLTree::insert(const std::string& name , const std::string& ufId) {
     return true;
 }
 
+// helper fucntion for insert which recursively inserts a studnet into the tree while maintaining balance
 AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
    // std::cout << "Debug: Inserting student " << student->name << " with ID " << student->ufId << std::endl;
     if (node == nullptr)
@@ -94,7 +100,7 @@ AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
         node->right = insertHelper(node->right , student);
     else
         return node;
-
+    // updates tehe hieght
     node->height = 1 + std::max(getHeight(node->left) , getHeight(node->right));
     int balance = getBalance(node);
 
@@ -121,6 +127,7 @@ AVLNode* AVLTree::insertHelper(AVLNode* node , Student* student) {
     return node;
 }
 
+// removes a student from the tree based on the ufid numner
 bool AVLTree::remove(int ufId) {
     if (searchIdHelper(root , ufId) == nullptr)
         return false;
@@ -128,15 +135,17 @@ bool AVLTree::remove(int ufId) {
     return true;
 }
 
+// helper fucntion for the removing which recursivly call removes a node while making sure the tree is balanced
 AVLNode* AVLTree::removeHelper(AVLNode* root , int ufId) {
     if (root == nullptr)
         return root;
-
+// located the node to delte
     if (ufId < root->student->ufId)
         root->left = removeHelper(root->left , ufId);
     else if (ufId > root->student->ufId)
         root->right = removeHelper(root->right , ufId);
     else {
+        // if the node has one or no children case
         if (root->left == nullptr || root->right == nullptr) {
             AVLNode* temp = root->left ? root->left : root->right;
             if (temp == nullptr) {
@@ -152,6 +161,7 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int ufId) {
                 delete temp;
             }
         }
+        // if the node has two children case
         else {
             AVLNode* temp = minValueNode(root->right);
             Student* oldStudent = root->student;
@@ -190,11 +200,13 @@ AVLNode* AVLTree::removeHelper(AVLNode* root , int ufId) {
     return root;
 }
 
+// search the tree for the id number
 std::string AVLTree::searchId(int ufId) {
     Student* student = searchIdHelper(root , ufId);
     return student ? student->name : "unsuccessful";
 }
 
+// recursively searches for a stundet who has that ufID
 Student* AVLTree::searchIdHelper(AVLNode* root , int ufId) {
     if (root == nullptr || root->student->ufId == ufId)
         return root ? root->student : nullptr;
@@ -205,12 +217,14 @@ Student* AVLTree::searchIdHelper(AVLNode* root , int ufId) {
     return searchIdHelper(root->right , ufId);
 }
 
+// searches the tree for the name
 std::vector<int> AVLTree::searchName(const std::string& name) {
     std::vector<int> result;
     searchNameHelper(root , name , result);
     return result;
 }
 
+// recursively calls the function to see if the name exsits
 void AVLTree::searchNameHelper(AVLNode* root , const std::string& name , std::vector<int>& result) {
     if (root != nullptr) {
         if (root->student->name == name)
@@ -220,12 +234,14 @@ void AVLTree::searchNameHelper(AVLNode* root , const std::string& name , std::ve
     }
 }
 
+// this does an inorder traversal of the tree and return a string vector of the sutdnets names in sorted order
 std::vector<std::string> AVLTree::printInorder() {
     std::vector<std::string> result;
     inorderHelper(root , result);
     return result;
 }
 
+// // this funciton recurviely does the inorder rtaversal (left, root, right)
 void AVLTree::inorderHelper(AVLNode* root , std::vector<std::string>& result) {
     if (root != nullptr) {
         inorderHelper(root->left , result);
@@ -234,12 +250,14 @@ void AVLTree::inorderHelper(AVLNode* root , std::vector<std::string>& result) {
     }
 }
 
+// this does a preorder traversal of the tree and returns a vector of student names
 std::vector<std::string> AVLTree::printPreorder() {
     std::vector<std::string> result;
     preorderHelper(root , result);
     return result;
 }
 
+// recursvely does the preorder traversal (root, left, right)
 void AVLTree::preorderHelper(AVLNode* root , std::vector<std::string>& result) {
     if (root != nullptr) {
         result.push_back(root->student->name);
@@ -248,12 +266,14 @@ void AVLTree::preorderHelper(AVLNode* root , std::vector<std::string>& result) {
     }
 }
 
+// does is the postorder one traversals the tree and returns a vector of student names
 std::vector<std::string> AVLTree::printPostorder() {
     std::vector<std::string> result;
     postorderHelper(root , result);
     return result;
 }
 
+// this recursively traversal in postorder (left, right, root)
 void AVLTree::postorderHelper(AVLNode* root , std::vector<std::string>& result) {
     if (root != nullptr) {
         postorderHelper(root->left , result);
@@ -262,6 +282,7 @@ void AVLTree::postorderHelper(AVLNode* root , std::vector<std::string>& result) 
     }
 }
 
+// get teh number of levels in the tree
 int AVLTree::printLevelCount() {
     if (root == nullptr) return 0;
 
@@ -269,10 +290,12 @@ int AVLTree::printLevelCount() {
     std::queue<AVLNode*> queue;
     queue.push(root);
 
+    // does a (BFS) level -order traversal
     while (!queue.empty()) {
+        // number of number at the level
         int size = queue.size();
         levels++;
-
+        // traverses and process each node at the level
         while (size--) {
             AVLNode* node = queue.front();
             queue.pop();
@@ -285,24 +308,29 @@ int AVLTree::printLevelCount() {
     return levels;
 }
 
+// removes the nth node in inorder traversal
 bool AVLTree::removeInorder(int n) {
     if (root == nullptr || n < 0)
         return false;
 
     // Get total number of nodes first
     std::vector<std::string> inorderList = printInorder();
+    // if n is out of bounds then return false
     if (static_cast<size_t>(n) >= inorderList.size())
         return false;
 
     int currentIndex = 0;
     int targetId = -1;
 
+    // lambda function to perform an inorder traversal and fin the nth node's ufid
     std::function<void(AVLNode*)> findNthNode = [&](AVLNode* node) {
+        // stops searching if the targer is already found
         if (node == nullptr || targetId != -1)
             return;
 
         findNthNode(node->left);
-
+        // if it matches the index n
+        // then i am storing the ufid
         if (currentIndex == n) {
             targetId = node->student->ufId;
             return;
@@ -311,7 +339,7 @@ bool AVLTree::removeInorder(int n) {
 
         findNthNode(node->right);
         };
-
+    //starts to search for the nth node
     findNthNode(root);
 
     if (targetId == -1)
