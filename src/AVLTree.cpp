@@ -4,10 +4,8 @@
 #include <iostream>
 #include <iomanip>
 // TODO: 
-// 1. add comments
 // 2. analzes time copmptetites 
-// 3. check if there is a bug with 00000001 bc this goes to 1 can't insert it again
-// check search method for stoi and test it and insertion 
+// test searchName inorder with the edge cases more!!!!!!!!!!!
 
 AVLTree::AVLTree() : root(nullptr) {}
 

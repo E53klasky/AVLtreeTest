@@ -261,8 +261,8 @@ TEST_CASE("edge case")
     tree.insert("ben" , "00000016");
     tree.insert("ben" , "00000001");
     tree.insert("ben" , "00000001");
-
-    REQUIRE(tree.searchId(1) == "ben");
+    // this does not matter extra 00000s 
+    REQUIRE(tree.searchId(0000000000001) == "ben");
     REQUIRE(tree.searchId(2) == "ben");
     REQUIRE(tree.searchId(3) == "ben");
     REQUIRE(tree.searchId(4) == "ben");
@@ -278,6 +278,15 @@ TEST_CASE("edge case")
     REQUIRE(tree.searchId(14) == "ben");
     REQUIRE(tree.searchId(15) == "ben");
     REQUIRE(tree.searchId(16) == "ben");
+    //-------------------------------------------------------------------------
+    // I need to check if this is printing out correctly
+    std::vector<int> names = tree.searchName("ben");
+    // checking
+    for (size_t i = 0; i < names.size(); i++)
+    {
+        std::cout << names[i] << std::endl;
+    }
+
 
 
 }

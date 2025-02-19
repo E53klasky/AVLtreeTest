@@ -2,8 +2,7 @@
 #include <string>
 #include <regex>
 #include "AVLTree.h"
-// test this and other things 
-// test insert 00000001 again and searching for it 
+
 int main() {
 	// I am making the object and counting the number of commands here
 	// I take the commands in with cin
