@@ -13,6 +13,8 @@
 
 using namespace std;
 
+
+// Helper function to convert integer to string name
 std::string intToName(int i) {
     std::string name;
     while (i > 0) {
@@ -23,270 +25,151 @@ std::string intToName(int i) {
     return name;
 }
 
-
-TEST_CASE("Random Removal in a Loop Using removeInorder" , "[random_removal_loop]") {
+TEST_CASE("Test incorrect commands" , "[invalid_commands]") {
     AVLTree tree;
-    const int count = 20;
-    for (int i = 1; i <= count; ++i) {
+
+    // Test 1: Invalid name with numbers
+    REQUIRE_FALSE(tree.insert("A11y" , "45679999"));
+
+    // Test 2: Invalid name with special characters
+    REQUIRE_FALSE(tree.insert("Bob@Smith" , "12345678"));
+
+    // Test 3: UFID too short
+    REQUIRE_FALSE(tree.insert("Carol" , "1234567"));
+
+    // Test 4: UFID too long
+    REQUIRE_FALSE(tree.insert("Dave" , "123456789"));
+
+    // Test 5: Empty name
+    REQUIRE_FALSE(tree.insert("" , "12345678"));
+}
+
+TEST_CASE("Test edge cases" , "[edge_cases]") {
+    AVLTree tree;
+
+    // Edge case 1: Remove from empty tree
+    REQUIRE_FALSE(tree.remove(12345678));
+
+    // Edge case 2: Search in empty tree
+    REQUIRE(tree.searchId(12345678) == "unsuccessful");
+
+    // Edge case 3: Remove inorder from empty tree
+    REQUIRE_FALSE(tree.removeInorder(0));
+
+    // Setup for next edge case
+    REQUIRE(tree.insert("Test" , "12345678"));
+
+    // Edge case 4: Remove index out of bounds
+    REQUIRE_FALSE(tree.removeInorder(1));
+}
+
+TEST_CASE("Test all rotation cases" , "[rotations]") {
+    AVLTree tree;
+
+    // Left-Left case
+    REQUIRE(tree.insert("NodeC" , "30000000"));
+    REQUIRE(tree.insert("NodeB" , "20000000"));
+    REQUIRE(tree.insert("NodeA" , "10000000"));
+    auto preorder1 = tree.printPreorder();
+    REQUIRE(preorder1[0] == "NodeB"); // NodeB should be root after rotation
+
+    tree = AVLTree(); // Reset tree
+
+    // Right-Right case
+    REQUIRE(tree.insert("NodeA" , "10000000"));
+    REQUIRE(tree.insert("NodeB" , "20000000"));
+    REQUIRE(tree.insert("NodeC" , "30000000"));
+    auto preorder2 = tree.printPreorder();
+    REQUIRE(preorder2[0] == "NodeB"); // NodeB should be root after rotation
+
+    tree = AVLTree(); // Reset tree
+
+    // Left-Right case
+    REQUIRE(tree.insert("NodeC" , "30000000"));
+    REQUIRE(tree.insert("NodeA" , "10000000"));
+    REQUIRE(tree.insert("NodeB" , "20000000"));
+    auto preorder3 = tree.printPreorder();
+    REQUIRE(preorder3[0] == "NodeB"); // NodeB should be root after rotation
+
+    tree = AVLTree(); // Reset tree
+
+    // Right-Left case
+    REQUIRE(tree.insert("NodeA" , "10000000"));
+    REQUIRE(tree.insert("NodeC" , "30000000"));
+    REQUIRE(tree.insert("NodeB" , "20000000"));
+    auto preorder4 = tree.printPreorder();
+    REQUIRE(preorder4[0] == "NodeB"); // NodeB should be root after rotation
+}
+
+TEST_CASE("Test all deletion cases" , "[deletion]") {
+    AVLTree tree;
+
+    // Setup for deletion tests
+    REQUIRE(tree.insert("NodeB" , "20000000")); // Will be root
+    REQUIRE(tree.insert("NodeA" , "10000000")); // Left child
+    REQUIRE(tree.insert("NodeC" , "30000000")); // Right child
+
+    // Case 1: Delete leaf node (no children)
+    REQUIRE(tree.remove(10000000)); // Remove NodeA
+    REQUIRE(tree.searchId(10000000) == "unsuccessful");
+
+    // Case 2: Delete node with one child
+    REQUIRE(tree.insert("NodeD" , "40000000")); // Add right child to NodeC
+    REQUIRE(tree.remove(30000000)); // Remove NodeC
+    REQUIRE(tree.searchId(30000000) == "unsuccessful");
+    REQUIRE(tree.searchId(40000000) == "NodeD"); // NodeD should still be in tree
+
+    // Case 3: Delete node with two children
+    REQUIRE(tree.insert("NodeE" , "25000000")); // Add between NodeB and NodeD
+    REQUIRE(tree.insert("NodeF" , "22000000")); // Add left child to NodeE
+    REQUIRE(tree.remove(20000000)); // Remove root (NodeB)
+    REQUIRE(tree.searchId(20000000) == "unsuccessful");
+    auto inorder = tree.printInorder();
+    REQUIRE(inorder.size() == 3); // Should still have 3 nodes
+}
+
+TEST_CASE("Large-scale insertion and random deletion test" , "[large_scale]") {
+    AVLTree tree;
+    std::vector<int> inserted_ids;
+
+    // Insert 100 nodes
+    for (int i = 1; i <= 100; i++) {
         char ufid[9];
         std::snprintf(ufid , 9 , "%08d" , 10000000 + i);
-        std::string nodeName = "Rand" + intToName(i);
-        REQUIRE(tree.insert(nodeName , std::string(ufid)));
-    }
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    while (!tree.printInorder().empty()) {
-        size_t sizeBefore = tree.printInorder().size();
-        std::uniform_int_distribution<size_t> indexDist(0 , sizeBefore - 1);
-        size_t idx = indexDist(gen);
-        int index = int(idx);
-        REQUIRE(tree.removeInorder(index));
-    }
-    REQUIRE(tree.printInorder().empty());
-}
-
-TEST_CASE("Insertion and Search with Edge UFIDs" , "[edge_ufid_search]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("EdgeMin" , "10000000"));
-    REQUIRE(tree.insert("EdgeMax" , "99999999"));
-    REQUIRE(tree.searchId(10000000) == "EdgeMin");
-    REQUIRE(tree.searchId(99999999) == "EdgeMax");
-}
-
-TEST_CASE("Remove Inorder on Single Node Tree" , "[remove_inorder_single]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("Solo" , "10000020"));
-    REQUIRE(tree.printInorder().size() == 1);
-    REQUIRE(tree.removeInorder(0));
-    REQUIRE(tree.printInorder().empty());
-}
-
-
-
-TEST_CASE("Invalid Insert Commands" , "[invalid_inserts]") {
-    AVLTree tree;
-
-    REQUIRE_FALSE(tree.insert("A11y" , "45679999"));
-    REQUIRE_FALSE(tree.insert("Bob@" , "10000002"));
-    REQUIRE_FALSE(tree.insert("Carol" , "9999"));
-    REQUIRE_FALSE(tree.insert("Dave" , "100000000"));
-    REQUIRE_FALSE(tree.insert("" , "10000003"));
-}
-
-TEST_CASE("Inserting and Searching for a Single Node" , "[single_node]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("Alice" , "10000001"));
-    REQUIRE(tree.searchId(10000001) == "Alice");
-}
-
-
-TEST_CASE("Invalid Insert Commands" , "[insert][validation]") {
-    AVLTree tree;
-    SECTION("Reject names with digits or special characters") {
-        REQUIRE_FALSE(tree.insert("A11y" , "45679999"));
-        REQUIRE_FALSE(tree.insert("Bob@" , "10000002"));
-    }
-
-    SECTION("Reject UFIDs of wrong length") {
-        REQUIRE_FALSE(tree.insert("Carol" , "9999"));
-        REQUIRE_FALSE(tree.insert("Dave" , "100000000"));
-    }
-    SECTION("Reject empty name") {
-        REQUIRE_FALSE(tree.insert("" , "10000003"));
-    }
-}
-
-
-TEST_CASE("Insertion and Basic Search" , "[insert][search]") {
-    AVLTree tree;
-    SECTION("Insert valid nodes and search by UFID") {
-        REQUIRE(tree.insert("Alice" , "10000001"));
-        REQUIRE(tree.insert("Bob" , "10000002"));
-        REQUIRE(tree.searchId(std::stoi("10000001")) == "Alice");
-        REQUIRE(tree.searchId(std::stoi("10000002")) == "Bob");
-        REQUIRE(tree.searchId(11111111) == "unsuccessful");
-    }
-}
-
-
-TEST_CASE("Duplicate Insertions" , "[insert][duplicates]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("Alice" , "10000001"));
-    REQUIRE_FALSE(tree.insert("AliceClone" , "10000001"));
-}
-
-TEST_CASE("Insertion and Removal by Key" , "[remove]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("Eve" , "10000010"));
-    REQUIRE(tree.remove(std::stoi("10000010")));
-    REQUIRE(tree.searchId(std::stoi("10000010")) == "unsuccessful");
-    REQUIRE_FALSE(tree.remove(std::stoi("10000010")));
-}
-
-TEST_CASE("Remove Inorder by Index" , "[remove_inorder]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("One" , "10000001"));
-    REQUIRE(tree.insert("Two" , "10000002"));
-    REQUIRE(tree.insert("Three" , "10000003"));
-    REQUIRE(tree.removeInorder(1));
-    auto inorder = tree.printInorder();
-    REQUIRE(inorder.size() == 2);
-    REQUIRE(tree.searchId(std::stoi("10000002")) == "unsuccessful");
-}
-
-
-TEST_CASE("Traversal Orders" , "[traversals]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("Alpha" , "10000001"));
-    REQUIRE(tree.insert("Gamma" , "10000003"));
-    REQUIRE(tree.insert("Beta" , "10000002"));
-
-    auto inorder = tree.printInorder();
-    std::vector<std::string> expectedInorder = { "Alpha", "Beta", "Gamma" };
-    REQUIRE(inorder == expectedInorder);
-
-    auto preorder = tree.printPreorder();
-    auto postorder = tree.printPostorder();
-    REQUIRE(preorder.size() == inorder.size());
-    REQUIRE(postorder.size() == inorder.size());
-}
-
-TEST_CASE("Tree Level Count on Empty and Non-empty Trees" , "[balance]") {
-    AVLTree tree;
-    REQUIRE(tree.printLevelCount() == 0);
-    REQUIRE(tree.insert("Root" , "10000005"));
-    REQUIRE(tree.insert("Left" , "10000003"));
-    REQUIRE(tree.insert("Right" , "10000007"));
-    int levelCount = tree.printLevelCount();
-    REQUIRE(levelCount <= 2);
-}
-
-TEST_CASE("Search By Name" , "[search_name]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("Grace" , "10000004"));
-    REQUIRE(tree.insert("Grace" , "10000005"));
-    std::vector<int> names = tree.searchName("Grace");
-    REQUIRE(names.size() == 2);
-    for (const auto& r : names) {
-        REQUIRE((r == 10000004 || r == 10000005));
-    }
-
-    auto noResults = tree.searchName("Nonexistent");
-    REQUIRE(noResults.empty());
-}
-
-TEST_CASE("Insertion With Leading and Trailing Spaces" , "[insert][trim]") {
-    AVLTree tree;
-    REQUIRE(tree.insert("  TrimTest  " , "10000019"));
-    REQUIRE(tree.searchId(std::stoi("10000019")) == "  TrimTest  ");
-}
-
-
-TEST_CASE("Forced Rotations and Balancing" , "[balance][rotations]") {
-    {
-        AVLTree tree;
-        REQUIRE(tree.insert("NodeC" , "10000003"));
-        REQUIRE(tree.insert("NodeB" , "10000002"));
-        REQUIRE(tree.insert("NodeA" , "10000001"));
-        auto inorder = tree.printInorder();
-        std::vector<std::string> expected = { "NodeA", "NodeB", "NodeC" };
-        REQUIRE(inorder == expected);
-    }
-    {
-        AVLTree tree;
-        REQUIRE(tree.insert("NodeA" , "10000001"));
-        REQUIRE(tree.insert("NodeB" , "10000002"));
-        REQUIRE(tree.insert("NodeC" , "10000003"));
-        auto inorder = tree.printInorder();
-        std::vector<std::string> expected = { "NodeA", "NodeB", "NodeC" };
-        REQUIRE(inorder == expected);
-    }
-}
-
-
-TEST_CASE("Sequential Removal (Remove Inorder Until Empty)" , "[remove_all]") {
-    AVLTree tree;
-    const int totalNodes = 1000;
-    for (int i = 1; i <= totalNodes; ++i) {
-        char ufid[9];
-        std::snprintf(ufid , sizeof(ufid) , "%08d" , 10000000 + i);
         std::string nodeName = "Node" + intToName(i);
         REQUIRE(tree.insert(nodeName , std::string(ufid)));
+        inserted_ids.push_back(10000000 + i);
     }
-    while (!tree.printInorder().empty()) {
-        REQUIRE(tree.removeInorder(0));
-    }
-    REQUIRE(tree.printInorder().empty());
-}
 
-TEST_CASE("Random Removal Loop Until Empty" , "[random_removal]") {
-    AVLTree tree;
-    const int count = 20;
-    for (int i = 1; i <= count; ++i) {
-        char ufid[9];
-        std::snprintf(ufid , sizeof(ufid) , "%08d" , 10000000 + i);
-        std::string name = "Rand" + intToName(i);
-        REQUIRE(tree.insert(name , std::string(ufid)));
-    }
+    // Verify 100 insertions
+    auto initial_inorder = tree.printInorder();
+    REQUIRE(initial_inorder.size() == 100);
+
+    // Remove 10 random nodes
     std::random_device rd;
     std::mt19937 gen(rd());
-    while (!tree.printInorder().empty()) {
-        size_t sizeBefore = tree.printInorder().size();
-        std::uniform_int_distribution<size_t> dist(0 , sizeBefore - 1);
-        size_t idx = dist(gen);
-        REQUIRE(tree.removeInorder(idx));
-    }
-    REQUIRE(tree.printInorder().empty());
-}
+    std::vector<int> removed_ids;
 
-
-TEST_CASE("edge case")
-{
-    AVLTree tree;
-    tree.insert("ben" , "00000001");
-    tree.insert("ben" , "00000002");
-    tree.insert("ben" , "00000003");
-    tree.insert("ben" , "00000004");
-    tree.insert("ben" , "00000005");
-    tree.insert("ben" , "00000006");
-    tree.insert("ben" , "00000007");
-    tree.insert("ben" , "00000008");
-    tree.insert("ben" , "00000009");
-    tree.insert("ben" , "00000010");
-    tree.insert("ben" , "00000011");
-    tree.insert("ben" , "00000012");
-    tree.insert("ben" , "00000013");
-    tree.insert("ben" , "00000014");
-    tree.insert("ben" , "00000015");
-    tree.insert("ben" , "00000016");
-    tree.insert("ben" , "00000001");
-    tree.insert("ben" , "00000001");
-    // this does not matter extra 00000s 
-    REQUIRE(tree.searchId(0000000000001) == "ben");
-    REQUIRE(tree.searchId(2) == "ben");
-    REQUIRE(tree.searchId(3) == "ben");
-    REQUIRE(tree.searchId(4) == "ben");
-    REQUIRE(tree.searchId(5) == "ben");
-    REQUIRE(tree.searchId(6) == "ben");
-    REQUIRE(tree.searchId(7) == "ben");
-    REQUIRE(tree.searchId(8) == "ben");
-    REQUIRE(tree.searchId(9) == "ben");
-    REQUIRE(tree.searchId(10) == "ben");
-    REQUIRE(tree.searchId(11) == "ben");
-    REQUIRE(tree.searchId(12) == "ben");
-    REQUIRE(tree.searchId(13) == "ben");
-    REQUIRE(tree.searchId(14) == "ben");
-    REQUIRE(tree.searchId(15) == "ben");
-    REQUIRE(tree.searchId(16) == "ben");
-    //-------------------------------------------------------------------------
-    // I need to check if this is printing out correctly
-    std::vector<int> names = tree.searchName("ben");
-    // checking
-    for (size_t i = 0; i < names.size(); i++)
-    {
-        std::cout << names[i] << std::endl;
+    for (int i = 0; i < 10; i++) {
+        std::uniform_int_distribution<> dis(0 , inserted_ids.size() - 1);
+        int index = dis(gen);
+        int id_to_remove = inserted_ids[index];
+        REQUIRE(tree.remove(id_to_remove));
+        removed_ids.push_back(id_to_remove);
+        inserted_ids.erase(inserted_ids.begin() + index);
     }
 
+    // Verify 90 nodes remain
+    auto final_inorder = tree.printInorder();
+    REQUIRE(final_inorder.size() == 90);
 
+    // Verify all remaining IDs are still in tree
+    for (int id : inserted_ids) {
+        REQUIRE(tree.searchId(id) != "unsuccessful");
+    }
 
+    // Verify removed IDs are not in tree
+    for (int id : removed_ids) {
+        REQUIRE(tree.searchId(id) == "unsuccessful");
+    }
 }

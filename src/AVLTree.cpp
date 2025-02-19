@@ -4,9 +4,8 @@
 #include <iostream>
 #include <iomanip>
 // TODO: 
-// 2. analzes time copmptetites 
-// test searchName inorder with the edge cases more!!!!!!!!!!!
-
+// test that it prints out correctly with mutlie of the same ids 
+// and changing my test to the test on the one thing. 
 AVLTree::AVLTree() : root(nullptr) {}
 
 int AVLTree::getHeight(AVLNode* node) {
